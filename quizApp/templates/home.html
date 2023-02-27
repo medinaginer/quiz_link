@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
 <div class="container my-5">
       <div class="row">
         <div class="col-md-6">
@@ -20,8 +21,7 @@
           {% endif %}
         </div>
         <div class="col-md-6">
-          <img src="https://storage.googleapis.com/home_image_quiz/homeimage.png" alt="Placeholder Image" class="img-fluid rounded">
-        </div>
+          <img src="{% static 'home_images/homeimage.png' %}" alt="Placeholder Image" class="img-fluid rounded">
       </div>
     </div>
 {% endblock %}
