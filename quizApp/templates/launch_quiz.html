@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-3">
+    <h2>{{ quiz.name }}</h2>
+    <hr>
+    <form method="POST" action="{% url 'submit_quiz' quiz.id %}">
+      {% csrf_token %}
+      {% for question in questions %}
+        <div class="card my-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ question.question }}</h5>
+            <p class="card-text">
+              <input type="radio" name="{{ question.question }}" value="{{ question.option1 }}" class="form-check-input"> {{ question.option1 }}<br>
+              <input type="radio" name="{{ question.question }}" value="{{ question.option2 }}" class="form-check-input"> {{ question.option2 }}<br>
+              <input type="radio" name="{{ question.question }}" value="{{ question.option3 }}" class="form-check-input"> {{ question.option3 }}<br>
+              <input type="radio" name="{{ question.question }}" value="{{ question.option4 }}" class="form-check-input"> {{ question.option4 }}<br>
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary btn-lg mt-3 animate__animated animate__heartBeat animate__infinite">Submit</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

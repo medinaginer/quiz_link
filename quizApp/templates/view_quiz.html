@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-3">
+    <h2>{{ quiz.name }}</h2>
+    <hr>
+    <div class="row">
+      {% for question in quiz.questions.all %}
+        <div class="col-sm-12">
+          <div class="card my-3">
+            <div class="card-body">
+              <h5 class="card-title">{{ question.question }}</h5>
+              <p class="card-text">
+                <input type="radio" name="{{ question.id }}" value="1"> {{ question.option1 }}<br>
+                <input type="radio" name="{{ question.id }}" value="2"> {{ question.option2 }}<br>
+                <input type="radio" name="{{ question.id }}" value="3"> {{ question.option3 }}<br>
+                <input type="radio" name="{{ question.id }}" value="4"> {{ question.option4 }}<br>
+              </p>
+              <div class="d-flex justify-content-end">
+                <a href="{% url 'update_question' question.id %}" class="btn btn-outline-success me-2 btn-update">Update</a>
+                <form method="POST" action="{% url 'delete_question' question.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-sm-12">
+          <p>No questions yet.</p>
+        </div>
+      {% endfor %}
+      <a href="{% url 'add_questions' quiz.id %}" class="btn btn-outline-primary me-2 btn-update">Add Questions</a>
+    </div>
+  </div>
+
+  <style>
+    .btn-update {
+      height: 38px; /* Adjust the height as necessary */
+    }
+  </style>
+{% endblock %}
+
+

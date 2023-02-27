@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1 class="my-4">Quizzes shared with me</h1>
+  <div class="row">
+    {% if shared_quizzes %}
+    {% for quiz in shared_quizzes %}
+    <div class="col-sm-6">
+      <div class="card my-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ quiz.name }}</h5>
+          <p class="card-text">{{ quiz.questions.count }} Questions</p>
+          <a href="{% url 'launch_quiz' quiz.id %}" class="btn btn-info mr-2">Launch Quiz</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="col-sm-12">
+      <p>No quizzes shared with you yet.</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

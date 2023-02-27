@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+          <h1 class="text-center">Add Questions for {{quiz.name}}</h1>
+        </div>
+        <div class="card-body">
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+              {{ form.question.label_tag }}
+              {{ form.question }}
+            </div>
+            <div class="form-group mb-3">
+              {{ form.option1.label_tag }}
+              {{ form.option1 }}
+            </div>
+            <div class="form-group mb-3">
+              {{ form.option2.label_tag }}
+              {{ form.option2 }}
+            </div>
+            <div class="form-group mb-3">
+              {{ form.option3.label_tag }}
+              {{ form.option3 }}
+            </div>
+            <div class="form-group mb-3">
+              {{ form.option4.label_tag }}
+              {{ form.option4 }}
+            </div>
+            <div class="form-group mb-3">
+              {{ form.ans.label_tag }}
+              {{ form.ans }}
+            </div>
+            <div class="form-group text-center">
+              <input type="submit" class="btn btn-primary" name="submit" value="Add Question">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

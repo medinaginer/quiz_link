@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-3">
+    <h2>Update Question</h2>
+    <hr>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="question">Question:</label>
+        <textarea class="form-control" id="question" name="question" rows="3">{{ question.question }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="option1">Option 1:</label>
+        <input type="text" class="form-control" id="option1" name="option1" value="{{ question.option1 }}">
+      </div>
+      <div class="form-group">
+        <label for="option2">Option 2:</label>
+        <input type="text" class="form-control" id="option2" name="option2" value="{{ question.option2 }}">
+      </div>
+      <div class="form-group">
+        <label for="option3">Option 3:</label>
+        <input type="text" class="form-control" id="option3" name="option3" value="{{ question.option3 }}">
+      </div>
+      <div class="form-group">
+        <label for="option4">Option 4:</label>
+        <input type="text" class="form-control" id="option4" name="option4" value="{{ question.option4 }}">
+      </div>
+      <div class="form-group">
+        <label for="ans">Correct Answer:</label>
+        <input type="text" class="form-control" id="ans" name="ans" value="{{ question.ans }}">
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="{% url 'view_quiz' question.quiz.id %}" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+{% endblock %}
