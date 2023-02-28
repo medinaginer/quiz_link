@@ -43,7 +43,7 @@ steps:
         "--no-input",
       ]
 
-  - id: "deploy app"
+  - id: "deploy cloud run service"
     name: "gcr.io/cloud-builders/gcloud"
     args:
       [
@@ -58,7 +58,7 @@ steps:
       "--set-cloudsql-instances",
       "${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME}",
     ]
-  - id: "get app url"
+  - id: "get cloud run url"
     name: "gcr.io/cloud-builders/gcloud"
     args: ["run", "services",  "list", "--filter", "SERVICE:${_SERVICE_NAME}", "--format", "value(status.address.url)"]  
 
