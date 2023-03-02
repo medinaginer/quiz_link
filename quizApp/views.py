@@ -178,12 +178,13 @@ def submit_quiz(request, quiz_id):
             else:
                 wrong += 1
         percentage = (correct*100)/total
+        rounded_percentage = round(percentage, 2)
 
         context = {
             'correct': correct,
             'wrong': wrong,
             'total': total,
-            'percentage': percentage
+            'percentage': rounded_percentage 
         }
         return render(request, 'result.html', context)
     else:
